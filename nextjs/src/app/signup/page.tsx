@@ -19,7 +19,7 @@ const Signup = () => {
     })
 
     const register = async () => {
-        const res = await fetch(Backend_URL + "auth/register", {
+        const res = await fetch(Backend_URL + "/auth/register", {
             method: "POST",
             body: JSON.stringify({
                 name: data.current.name,
@@ -28,6 +28,12 @@ const Signup = () => {
             }),
             headers: { "Content-Type": "application/json" },
         });
+
+         
+
+        const accessControlAllowOrigin = res.headers.get("Access-Control-Allow-Origin");
+        console.log("Access-Control-Allow-Origin:", accessControlAllowOrigin);
+
         if(!res.ok){
             alert(res.statusText);
             return;
